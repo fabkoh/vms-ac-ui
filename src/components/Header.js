@@ -1,7 +1,9 @@
+import NavigationBar from "./NavigationBar"
+
 const Header = () => {
     return (
-        <div>
-            <h1>Visitor Registration</h1>
+        <div className="Header">
+            <NavigationBar/>
         </div>
     )
 }
