@@ -39,7 +39,7 @@ const Register = () => {
     }
 
     const handleSubmit = (event) => {
-        /*event.preventDefault();*/
+       
         const form = event.currentTarget;
         console.log("in handlesubmit: " + form.checkValidity())
         console.log(validated)
@@ -47,17 +47,17 @@ const Register = () => {
           event.preventDefault();
           event.stopPropagation();
         }
-        setValidated(true);
+
         setVisit({...visit, startDateofVisit: startDate, endDateOfVisit: endDate, visitorId: '1', oneTimeUse: false});
         console.log(visit);
-        addVisit(visit);
+        setValidated(true);
         console.log("in handlesubmit second line: " + validated)
-        
+        event.preventDefault();
       };
     console.log(visit);
     console.log('First Name: ' + firstName);
     console.log('Last Name: ' + lastName);
-
+    
     return (
         <div className="register-form">
             <h1>Register a visitor</h1>
