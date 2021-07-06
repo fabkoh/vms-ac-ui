@@ -7,15 +7,39 @@ import { useState } from "react"
 const Register = () => {
 
     const [validated, setValidated] = useState(false);
+    const [visitorId, setVisitorId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [lastFourDigits, setLastFourDigits] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
-    const [email, setEmail] = useState('');
+    /*const [email, setEmail] = useState(''); Note: for future addition */
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
+    const[visit, setVisit] = useState([]);
+
+    const addVisit = async (visit) => {
+        const res = await fetch('http://localhost:8080/api/register-scheduled-visit',{
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(visit), 
+        })
+
+   /* const addVisitor = async (visit) => {
+        const res = await fetch('http://localhost:8080/api/register-new-visitor',{
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(visit), 
+        })  */
+
+    }
+
     const handleSubmit = (event) => {
+        /*event.preventDefault();*/
         const form = event.currentTarget;
         console.log("in handlesubmit: " + form.checkValidity())
         console.log(validated)
@@ -23,11 +47,14 @@ const Register = () => {
           event.preventDefault();
           event.stopPropagation();
         }
-    
         setValidated(true);
+        setVisit({...visit, startDateofVisit: startDate, endDateOfVisit: endDate, visitorId: '1', oneTimeUse: false});
+        console.log(visit);
+        addVisit(visit);
         console.log("in handlesubmit second line: " + validated)
+        
       };
-
+    console.log(visit);
     console.log('First Name: ' + firstName);
     console.log('Last Name: ' + lastName);
 
@@ -75,19 +102,30 @@ const Register = () => {
                     placeholder="Mobile number"
                     defaultValue={mobileNumber}
                     onChange={(e) => setMobileNumber(e.target.value)} />
-                <Form.Control.Feedback type="invalid">Please provide a mobile number</Form.Control.Feedback>
+                    <Form.Text id="mobileHelp" muted>
+                        A QR code will be sent to this number for entry.
+                    </Form.Text>
+                <Form.Control.Feedback type="invalid">Please provide your mobile number</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Row>
                 <Form.Group as={Col} controlId="formGridStartDate">
                 <Form.Label>Start date of visit</Form.Label>
-                <Form.Control required type="date"/>
+                <Form.Control 
+                    required 
+                    type="date"
+                    defaultValue={startDate}
+                    onChange={(e)=> setStartDate(e.target.value)}/>
                 <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridEndDate">
                 <Form.Label>End date of visit</Form.Label>
-                <Form.Control required type="date"/>
+                <Form.Control 
+                    required 
+                    type="date"
+                    defaultValue={endDate}
+                    onChange={(e)=> setEndDate(e.target.value)}/>
                 <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
