@@ -18,62 +18,79 @@ const Register = () => {
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         console.log("in handlesubmit: " + form.checkValidity())
+        console.log(validated)
         if (form.checkValidity() === false) {
           event.preventDefault();
           event.stopPropagation();
         }
     
         setValidated(true);
-        console.log("in handlesubmit: " + validated)
+        console.log("in handlesubmit second line: " + validated)
       };
 
     console.log('First Name: ' + firstName);
     console.log('Last Name: ' + lastName);
 
     return (
-        <div>
-            <h1>Registration page</h1>
-            <Form validated={validated} onSubmit={handleSubmit} style={{textAlign:'left'}}>
+        <div className="register-form">
+            <h1>Register a visitor</h1>
+            <Form noValidate validated={validated} onSubmit={handleSubmit} style={{textAlign:'left'}}>
             <Form.Row>
                 <Form.Group as={Col} controlId="formGridFirstName">
                 <Form.Label>First name</Form.Label>
-                <Form.Control type="text" placeholder="Enter first name" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                <Form.Control 
+                    required 
+                    type="text" 
+                    placeholder="First name" 
+                    defaultValue={firstName} 
+                    onChange={(e) => setFirstName(e.target.value)}/>
+                <Form.Control.Feedback type="invalid">Please provide a name</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridLastName">
                 <Form.Label>Last name</Form.Label>
-                <Form.Control type="text" placeholder="Enter last name" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                <Form.Control 
+                    required type="text" 
+                    placeholder="Last name" 
+                    defaultValue={lastName} 
+                    onChange={(e) => setLastName(e.target.value)}/>
+                <Form.Control.Feedback type="invalid">Please provide a name</Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
 
             <Form.Group controlId="formGridLastFourDigits">
-                <Form.Label>Address</Form.Label>
-                <Form.Control placeholder="1234 Main St" />
+                <Form.Label>Last four digits of identification</Form.Label>
+                <Form.Control 
+                    required
+                    placeholder="123A"
+                    defaultValue={lastFourDigits}
+                    onChange={(e) => setLastFourDigits(e.target.value)}/>
+                <Form.Control.Feedback type="invalid">Please provide the last four digits of your identification</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group controlId="formGridAddress2">
-                <Form.Label>Address 2</Form.Label>
-                <Form.Control placeholder="Apartment, studio, or floor" />
+            <Form.Group controlId="formGridMobileNumer">
+                <Form.Label>Mobile number</Form.Label>
+                <Form.Control 
+                    required
+                    placeholder="Mobile number"
+                    defaultValue={mobileNumber}
+                    onChange={(e) => setMobileNumber(e.target.value)} />
+                <Form.Control.Feedback type="invalid">Please provide a mobile number</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Row>
-                <Form.Group as={Col} controlId="formGridCity">
-                <Form.Label>City</Form.Label>
-                <Form.Control />
+                <Form.Group as={Col} controlId="formGridStartDate">
+                <Form.Label>Start date of visit</Form.Label>
+                <Form.Control required type="date"/>
+                <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridState">
-                <Form.Label>State</Form.Label>
-                <Form.Control as="select" defaultValue="Choose...">
-                    <option>Choose...</option>
-                    <option>...</option>
-                </Form.Control>
+                <Form.Group as={Col} controlId="formGridEndDate">
+                <Form.Label>End date of visit</Form.Label>
+                <Form.Control required type="date"/>
+                <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
-
-            <Form.Group id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
 
             <Button variant="primary" type="submit">
                 Submit

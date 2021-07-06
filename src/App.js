@@ -9,8 +9,11 @@ function App() {
 
   return (
     <Router>
+      <div className="Header">   
+        <Header/>
+      </div>
+  
       <div className="App">
-      <Header/>
       <Switch>
           <Route exact path="/"><Home/></Route>
           <Route path="/visitor/register"><Register/></Route>
