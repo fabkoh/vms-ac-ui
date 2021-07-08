@@ -16,7 +16,17 @@ const Register = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
-    const[visit, setVisit] = useState([]);
+    /*const[visit, setVisit] = useState([]);*/
+
+    const visit = {
+        firstName : firstName,
+        lastName : lastName,
+        lastFourDigits : lastFourDigits,
+        mobileNumber : mobileNumber,
+        startDate: startDate,
+        endDate : endDate
+    }
+    
 
     const addVisit = async (visit) => {
         const res = await fetch('http://localhost:8080/api/register-scheduled-visit',{
@@ -37,22 +47,22 @@ const Register = () => {
         })  */
 
     }
-
+    console.log("Validated outside handleSubmit: " + validated)
     const handleSubmit = (event) => {
        
         const form = event.currentTarget;
-        console.log("in handlesubmit: " + form.checkValidity())
-        console.log(validated)
+        console.log("Form validaity in handlesubmit: " + form.checkValidity())
+        console.log("Validated inside handleSubmit first line: " + validated)
         if (form.checkValidity() === false) {
           event.preventDefault();
           event.stopPropagation();
         }
 
-        setVisit({...visit, startDateofVisit: startDate, endDateOfVisit: endDate, visitorId: '1', oneTimeUse: false});
+        /*setVisit({...visit, startDateofVisit: startDate, endDateOfVisit: endDate, visitorId: '1', oneTimeUse: false});*/
         console.log(visit);
         setValidated(true);
-        console.log("in handlesubmit second line: " + validated)
-        event.preventDefault();
+        console.log("Validated in handlesubmit second line: " + validated)
+        /*event.preventDefault();*/
       };
     console.log(visit);
     console.log('First Name: ' + firstName);
