@@ -12,11 +12,8 @@ const Register = () => {
     const [lastName, setLastName] = useState('');
     const [lastFourDigits, setLastFourDigits] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
-    /*const [email, setEmail] = useState(''); Note: for future addition */
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-
-    /*const[visit, setVisit] = useState([]);*/
 
     const visit = {
         firstName : firstName,
@@ -36,7 +33,9 @@ const Register = () => {
             },
             body: JSON.stringify(visit), 
         })
-
+        
+        console.log(res.status);
+    }
    /* const addVisitor = async (visit) => {
         const res = await fetch('http://localhost:8080/api/register-new-visitor',{
             method: 'POST',
@@ -44,29 +43,21 @@ const Register = () => {
                 'Content-type': 'application/json',
             },
             body: JSON.stringify(visit), 
-        })  */
-
-    }
-    console.log("Validated outside handleSubmit: " + validated)
+        })  
+    }*/
     const handleSubmit = (event) => {
        
         const form = event.currentTarget;
-        console.log("Form validaity in handlesubmit: " + form.checkValidity())
-        console.log("Validated inside handleSubmit first line: " + validated)
+
         if (form.checkValidity() === false) {
           event.preventDefault();
           event.stopPropagation();
         }
-
-        /*setVisit({...visit, startDateofVisit: startDate, endDateOfVisit: endDate, visitorId: '1', oneTimeUse: false});*/
         console.log(visit);
         setValidated(true);
-        console.log("Validated in handlesubmit second line: " + validated)
-        /*event.preventDefault();*/
+        addVisit(visit);
+        event.preventDefault();
       };
-    console.log(visit);
-    console.log('First Name: ' + firstName);
-    console.log('Last Name: ' + lastName);
     
     return (
         <div className="register-form">
