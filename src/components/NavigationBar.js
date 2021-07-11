@@ -16,7 +16,8 @@ const NavigationBar = () => {
                     <NavDropdown title="Visitor" id="visitorDropdown">
                         <NavDropdown.Item href='/visitor/register'>Register visitor</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href="/about">About</Nav.Link>
+                <Nav.Link href="/visitor/qrcode">Code</Nav.Link>
+                <Nav.Link href="/about">About</Nav.Link>
                 </Nav>
                 <Form className="d-flex">
                     <FormControl type="text" placeholder="Search" className="mr-2" />

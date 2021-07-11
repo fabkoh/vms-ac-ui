@@ -1,5 +1,5 @@
 .App {
-  margin-top: 60px;
+  margin-top: 80px;
   padding: 30px;
   text-align: center;
   align-content: center;
@@ -7,7 +7,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
 }
 
 .Header {
@@ -26,6 +25,17 @@
   flex-direction: column;
   align-items: left;
   justify-content: left;
+}
+
+.Cards {
+  text-align: left;
+  align-content: left;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  box-shadow: 10px 4px 8px 0 rgba(0, 0, 0, 0.2),
+    8px 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* to set colour for NavBar drop down background */

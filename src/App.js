@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/Register';
 import Home from './components/Home';
 import Header from './components/Header';
+import QrCodeDisplay from './components/QrCodeDisplay';
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
       <div className="App">
       <Switch>
           <Route exact path="/"><Home/></Route>
-          <Route path="/visitor/register"><Register/></Route>
+          <Route exact path="/visitor/register"><Register/></Route>
+          <Route exact path="/visitor/qrcode"><QrCodeDisplay/></Route>
       </Switch>
       </div>
     </Router>

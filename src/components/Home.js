@@ -6,7 +6,7 @@ import visitImg from '../assets/placeholder-1.jpg';
 function Home() {
     return (
       <CardDeck>
-        <Card style={{ width: '18rem' }} bg="dark" border="dark">
+        <Card className="Cards" style={{ width: '18rem' }} bg="dark">
           <Card.Img variant="top" src={visitImg}/>
           <Card.Body>
             <Card.Title style={{color: 'white'}}>Visitor Registration</Card.Title>
@@ -16,7 +16,7 @@ function Home() {
             <Button variant="secondary" href="/visitor/register">Start</Button>
           </Card.Body>
         </Card>
-        <Card style={{ width: '18rem' }} bg="dark" border="dark">
+        <Card className="Cards" style={{ width: '18rem' }} bg="dark" border="dark">
           <Card.Img variant="top" src={visitImg}/>
           <Card.Body>
             <Card.Title style={{color: 'white'}}>Visitor Registration</Card.Title>
@@ -26,7 +26,7 @@ function Home() {
             <Button variant="secondary" href="/visitor/register">Start</Button>
           </Card.Body>
         </Card>
-        <Card style={{ width: '18rem' }} bg="dark" border="dark">
+        <Card className="Cards" style={{ width: '18rem' }} bg="dark" border="dark">
           <Card.Img variant="top" src={visitImg}/>
           <Card.Body>
             <Card.Title style={{color: 'white'}}>Visitor Registration</Card.Title>

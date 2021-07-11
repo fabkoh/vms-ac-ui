@@ -10,7 +10,7 @@ const Register = () => {
     const [visitorId, setVisitorId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [lastFourDigits, setLastFourDigits] = useState('');
+    const [idNumber, setIdNumber] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
@@ -18,10 +18,10 @@ const Register = () => {
     const visit = {
         firstName : firstName,
         lastName : lastName,
-        lastFourDigits : lastFourDigits,
+        idNumber : idNumber,
         mobileNumber : mobileNumber,
-        startDate: startDate,
-        endDate : endDate
+        startDateOfVisit: startDate,
+        endDateOfVisit : endDate
     }
     
 
@@ -36,7 +36,7 @@ const Register = () => {
         
         console.log(res.status);
     }
-   /* const addVisitor = async (visit) => {
+   const addVisitor = async (visit) => {
         const res = await fetch('http://localhost:8080/api/register-new-visitor',{
             method: 'POST',
             headers: {
@@ -44,7 +44,8 @@ const Register = () => {
             },
             body: JSON.stringify(visit), 
         })  
-    }*/
+        console.log(res.status);
+    }
     const handleSubmit = (event) => {
        
         const form = event.currentTarget;
@@ -56,6 +57,7 @@ const Register = () => {
         console.log(visit);
         setValidated(true);
         addVisit(visit);
+        addVisitor(visit);
         event.preventDefault();
       };
     
@@ -86,14 +88,14 @@ const Register = () => {
                 </Form.Group>
             </Form.Row>
 
-            <Form.Group controlId="formGridLastFourDigits">
-                <Form.Label>Last four digits of identification</Form.Label>
+            <Form.Group controlId="formGridIdNumber">
+                <Form.Label>Identification number</Form.Label>
                 <Form.Control 
                     required
                     placeholder="123A"
-                    defaultValue={lastFourDigits}
-                    onChange={(e) => setLastFourDigits(e.target.value)}/>
-                <Form.Control.Feedback type="invalid">Please provide the last four digits of your identification</Form.Control.Feedback>
+                    defaultValue={idNumber}
+                    onChange={(e) => setIdNumber(e.target.value)}/>
+                <Form.Control.Feedback type="invalid">Please provide your identification number.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="formGridMobileNumer">
