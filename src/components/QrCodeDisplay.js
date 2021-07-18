@@ -21,7 +21,7 @@ const QrCodeDisplay = () => {
                         'Content-type': 'application/json',
                     },
                 });
-                const jsonResponse = res.json();
+                const jsonResponse = await res.json();
                 console.log(jsonResponse);
                 setVisitDetails(jsonResponse);
                 
@@ -37,8 +37,9 @@ const QrCodeDisplay = () => {
     return (
         <div>
             <h2>Your QR entry pass</h2>
-            <h3>Start Date of Visit:</h3>
+            <h5>Start date of visit: {visitDetails.map((e)=> {return [e.startDateOfVisit]})} </h5>
             <img src={fetchQrURL} alt="QR entry" width="200px" height="200px"></img>
+            <h5>End date of visit: {visitDetails.map((e)=> {return [e.endDateOfVisit]})} </h5>
         </div>
     )
 }
