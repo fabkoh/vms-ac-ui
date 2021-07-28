@@ -26,7 +26,7 @@ const Register = () => {
     
 
     const addVisit = async (visit) => {
-        const res = await fetch('http://localhost:8080/api/register-scheduled-visit',{
+        const res = await fetch('http://ec2-13-212-193-249.ap-southeast-1.compute.amazonaws.com:8080/api/register-scheduled-visit',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -37,7 +37,7 @@ const Register = () => {
         console.log(res.status);
     }
    const addVisitor = async (visit) => {
-        const res = await fetch('http://localhost:8080/api/register-new-visitor',{
+        const res = await fetch('http://ec2-13-212-193-249.ap-southeast-1.compute.amazonaws.com:8080/api/register-new-visitor',{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

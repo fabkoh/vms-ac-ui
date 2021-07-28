@@ -4,9 +4,9 @@ const QrCodeDisplay = () => {
   
     const urlParams = new URLSearchParams(window.location.search);
     const qrId = urlParams.get('qrCode');
-    const fetchQrURL = 'http://localhost:8080/api/qr-code/'+qrId;
+    const fetchQrURL = 'http://ec2-13-212-193-249.ap-southeast-1.compute.amazonaws.com:8080/api/qr-code/'+qrId;
     const [visitDetails, setVisitDetails] = useState([]);
-    const fetchVisitURL = 'http://localhost:8080/api/visit-by-qrcodeid/'+qrId;
+    const fetchVisitURL = 'http://ec2-13-212-193-249.ap-southeast-1.compute.amazonaws.com:8080/api/visit-by-qrcodeid/'+qrId;
 
     useEffect(()=> {
 
