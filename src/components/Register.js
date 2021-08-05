@@ -58,7 +58,6 @@ const Register = () => {
         setValidated(true);
         addVisit(visit);
         addVisitor(visit);
-        event.preventDefault();
       };
     
     return (
