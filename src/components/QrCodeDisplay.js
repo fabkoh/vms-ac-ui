@@ -4,9 +4,10 @@ const QrCodeDisplay = () => {
   
     const urlParams = new URLSearchParams(window.location.search);
     const qrId = urlParams.get('qrCode');
-    const fetchQrURL = 'http://ec2-13-212-193-249.ap-southeast-1.compute.amazonaws.com:8080/api/qr-code/'+qrId;
+    const fetchQrURL = process.env.REACT_APP_QRCODE_API_ENDPOINT+qrId;
+    console.log("Console print Qrcode: "+process.env.REACT_APP_QRCODE_API_ENDPOINT);
     const [visitDetails, setVisitDetails] = useState([]);
-    const fetchVisitURL = 'http://ec2-13-212-193-249.ap-southeast-1.compute.amazonaws.com:8080/api/visit-by-qrcodeid/'+qrId;
+    const fetchVisitURL = process.env.REACT_APP_VISITBYQRID_API_ENDPOINT+qrId; 
 
     useEffect(()=> {
 
