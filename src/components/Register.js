@@ -3,8 +3,6 @@ import Button from "react-bootstrap/Button"
 import Col from "react-bootstrap/Col"
 import { useState } from "react"
 import { Redirect, withRouter } from "react-router-dom"
-import RegisterSuccess from "./RegisterSuccess"
-
 
 
 const Register = () => {
