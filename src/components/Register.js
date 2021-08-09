@@ -2,12 +2,15 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Col from "react-bootstrap/Col"
 import { useState } from "react"
+import { Redirect, withRouter } from "react-router-dom"
+import RegisterSuccess from "./RegisterSuccess"
+
 
 
 const Register = () => {
 
     const [validated, setValidated] = useState(false);
-    const [visitorId, setVisitorId] = useState('');
+    const [redirect, setRedirect] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [idNumber, setIdNumber] = useState('');
@@ -23,10 +26,13 @@ const Register = () => {
         startDateOfVisit: startDate,
         endDateOfVisit : endDate
     }
-    
+    //redirect variable is set to true after a valid form submit. upon re-render, this is triggered and redirects to new page.
+    if (redirect){
+        return <Redirect to="/visitor/registration-complete"/>
+    }
 
     const addVisit = async (visit) => {
-        const res = await fetch('http://ec2-13-212-193-249.ap-southeast-1.compute.amazonaws.com:8080/api/register-scheduled-visit',{
+        const res = await fetch(process.env.REACT_APP_REGISTER_SCHEDULED_VISIT_API_ENDPOINT,{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -37,7 +43,7 @@ const Register = () => {
         console.log(res.status);
     }
    const addVisitor = async (visit) => {
-        const res = await fetch('http://ec2-13-212-193-249.ap-southeast-1.compute.amazonaws.com:8080/api/register-new-visitor',{
+        const res = await fetch(process.env.REACT_APP_REGISTER_VISITOR_API_ENDPOINT,{
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -50,14 +56,18 @@ const Register = () => {
        
         const form = event.currentTarget;
 
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        console.log(visit);
+        if (form.checkValidity()) {
+            console.log(visit);
+            addVisitor(visit);
+            addVisit(visit);
+            setValidated(true);
+            setRedirect(true);
+        }else{
+        event.preventDefault();
+        event.stopPropagation();
         setValidated(true);
-        addVisit(visit);
-        addVisitor(visit);
+        }
+    
       };
     
     return (
