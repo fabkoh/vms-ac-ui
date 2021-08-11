@@ -2,20 +2,21 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Col from "react-bootstrap/Col"
 import { useState } from "react"
-import { Redirect, withRouter } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 
 
 const Register = () => {
-
+    
+    //utility 
     const [validated, setValidated] = useState(false);
     const [redirect, setRedirect] = useState(false);
+    //user data
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [idNumber, setIdNumber] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-
     const visit = {
         firstName : firstName,
         lastName : lastName,
@@ -26,7 +27,12 @@ const Register = () => {
     }
     //redirect variable is set to true after a valid form submit. upon re-render, this is triggered and redirects to new page.
     if (redirect){
-        return <Redirect to="/visitor/registration-complete"/>
+        return <Redirect 
+                    to={{
+                        pathname: "/visitor/registration-complete",
+                        state: {visit : "visit"}
+                    }}
+                />
     }
 
     const addVisit = async (visit) => {
@@ -68,6 +74,8 @@ const Register = () => {
     
       };
     
+    console.log(visit)
+
     return (
         <div className="register-form">
             <h1>Register a visitor</h1>

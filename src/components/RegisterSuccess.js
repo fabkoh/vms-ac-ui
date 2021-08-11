@@ -1,7 +1,12 @@
-const RegisterSuccess = () => {
+import { useEffect } from "react";
+
+const RegisterSuccess = (props) => {
+
+    const visit = props.location.state.visit;
+    
     return (
         <div>
-            <h1>Success</h1>
+            <h1>{visit}</h1>
         </div>
     )
 }
