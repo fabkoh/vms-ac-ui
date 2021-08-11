@@ -29,12 +29,11 @@ const Register = () => {
     if (redirect){
         return <Redirect 
                     to={{
-                        pathname: "/visitor/registration-complete",
-                        state: {visit : "visit"}
+                        pathname: '/visitor/registration-complete',
+                        state: {visit : visit}
                     }}
                 />
     }
-
     const addVisit = async (visit) => {
         const res = await fetch(process.env.REACT_APP_REGISTER_SCHEDULED_VISIT_API_ENDPOINT,{
             method: 'POST',
@@ -66,13 +65,14 @@ const Register = () => {
             addVisit(visit);
             setValidated(true);
             setRedirect(true);
+            
         }else{
         event.preventDefault();
         event.stopPropagation();
-        setValidated(true);
+        setValidated(true); 
         }
     
-      };
+    }
     
     console.log(visit)
 

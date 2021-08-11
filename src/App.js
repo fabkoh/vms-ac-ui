@@ -20,7 +20,7 @@ function App() {
           <Route exact path="/"><Home/></Route>
           <Route exact path="/visitor/register"><Register/></Route>
           <Route exact path="/visitor/qrcode"><QrCodeDisplay/></Route>
-          <Route exact path="/visitor/registration-complete"><RegisterSuccess/></Route>
+          <Route exact path="/visitor/registration-complete" render={(props)=> <RegisterSuccess {...props}/>}></Route>
       </Switch>
       </div>
     </Router>
