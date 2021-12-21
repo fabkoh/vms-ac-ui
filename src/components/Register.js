@@ -61,8 +61,7 @@ const Register = () => {
 
         if (form.checkValidity()) {
             console.log(visit);
-            addVisitor(visit);
-            addVisit(visit);
+            addVisitor(visit).then(() => addVisit(visit));
             setValidated(true);
             setRedirect(true);
             
